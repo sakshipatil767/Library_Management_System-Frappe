@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login and Registration</title>
+    <link rel="stylesheet" href="addb.css">
+    <style>
+        #add {
+            left: 50px;
+        }
+
+        #remove {
+            left: -400px;
+        }
+    </style>
+</head>
+<body>
+    <h1>BOOK ADD/BOOK REMOVE</h1>
+    <div class="hero">
+        <div class="form-box">
+            <div class="button-box">
+                <div id="btn"></div>
+                <button type="button" class="toggle-btn" onclick="add()">ADD</button>
+                <button type="button" class="toggle-btn" onclick="remove()">REMOVE</button>
+            </div>
+            <form id="add" class="input-group" action="/add" method="post">
+                <input type="text" class="input-field" placeholder="Book ID" name="bookID" autocomplete="off" required>
+                <input type="text" class="input-field" placeholder="Title" name="title" autocomplete="off" required>
+                <input type="text" class="input-field" placeholder="Authors" name="authors" autocomplete="off" required>
+                <input type="text" class="input-field" placeholder="Average Rating" name="average_rating" autocomplete="off" required>
+                <input type="text" class="input-field" placeholder="ISBN" name="isbn" autocomplete="off" required>
+                <input type="text" class="input-field" placeholder="ISBN13" name="isbn13" autocomplete="off" required>
+                <input type="text" class="input-field" placeholder="Language Code" name="language_code" autocomplete="off" required>
+                <input type="text" class="input-field" placeholder="Publication Date" name="publication_date" autocomplete="off" required>
+                <input type="text" class="input-field" placeholder="Publisher" name="publisher" autocomplete="off" required>
+                <input type="text" class="input-field" placeholder="Ratings Count" name="ratings_count" autocomplete="off" required>
+                <input type="text" class="input-field" placeholder="Text Reviews Count" name="text_reviews_count" autocomplete="off" required>
+                <input type="text" class="input-field" placeholder="Available Count" name="available_count" autocomplete="off" required>
+                <input type="text" class="input-field" placeholder="Remove Count" name="remove_count" autocomplete="off" required>          
+                <button type="submit" class="submit-btn">SUBMIT</button>
+            </form>
+            <form id="remove" class="input-group" method="post" action="/remove">
+                <input type="text" class="input-field" placeholder="Book ID to Remove" name="bookIDToRemove" autocomplete="off" required>
+                <button type="submit" class="submit-btn">SUBMIT</button>
+            </form>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var x = document.getElementById("add");
+        var y = document.getElementById("remove");
+        var z = document.getElementById("btn");
+    
+        function remove(){
+            x.style.left="-400px";
+            y.style.left="50px";
+            z.style.left="110px";
+            changeUrl('remove');
+        }
+    
+        function add(){
+            x.style.left="50px";
+            y.style.left="450px";
+            z.style.left="0";
+            changeUrl('add');
+        }
+        function changeUrl(type) {
+            const loginForm = document.getElementById("add");
+            const signupForm = document.getElementById("remove");
+
+            if (type === 'add') {
+                loginForm.action = "/add";
+                window.history.pushState({}, '', '/add');
+            } else if (type === 'remove') {
+                signupForm.action = "/remove";
+                window.history.pushState({}, '', '/remove');
+            }
+        }
+    </script>
+</body>
+</html>

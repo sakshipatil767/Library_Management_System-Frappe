@@ -1,0 +1,37 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <center><h1>User Profile</h1></center>
+    <center><p>User ID: {{ user[1] }}</p></center>
+    <center><p>Email: {{ user[2] }}</p></center>
+
+    <center><h2>Books</h2></center>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Issued Date</th>
+                <th>Returned Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in books %}
+                <tr>
+                    <td>{{ book[4] }}</td>
+                    <td>{{ book[5] }}</td>
+                    <td>{{ book[6] }}</td>
+                    <td>{% if book[7] %}{{ book[7] }}{% else %}Not returned{% endif %}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

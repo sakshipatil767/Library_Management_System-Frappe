@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>User Data</title>
+   <link rel="stylesheet" href="table.css">
+</head>
+<body>
+   <nav>
+      <ul>
+         <li><a href="/">Home</a></li>
+         <li><a href="about.html">About</a></li>
+         <li><a href="/datatable">Members</a></li>
+      </ul>
+   </nav>
+   
+   <h1>User Data</h1>
+   <table border="1">
+       <thead>
+           <tr>
+               <th>User ID</th>
+               <th>Email</th>
+               <th>Action</th>
+           </tr>
+       </thead>
+       <tbody>
+           {% for row in data %}
+               <tr>
+                   <td>{{ row[1] }}</td>
+                   <td>{{ row[2] }}</td>
+                   <td>
+                       <div class="action-buttons">
+                           <a class="update-button" href="/update/{{ row[1] }}">Update</a>
+                           <form method="post" action="/delete">
+                               <input type="hidden" name="user_id" value="{{ row[1] }}">
+                               <button type="submit" class="delete-button">Delete</button>
+                           </form>
+                           <button class="show-details-button" data-user-email="{{ row[2] }}">Show Details</button>
+                       </div>
+                   </td>
+               </tr>
+           {% endfor %}
+       </tbody>
+   </table>
+
+   <div id="userDetailsContainer"></div>
+
+   <script>
+       // JavaScript to handle showing user details
+        document.addEventListener('DOMContentLoaded', function () {
+            const showDetailsButtons = document.querySelectorAll('.show-details-button');
+            const userDetailsContainer = document.getElementById('userDetailsContainer');
+
+            showDetailsButtons.forEach(function (button) {
+                button.addEventListener('click', function () {
+                    const userEmail = button.getAttribute('data-user-email');
+                    fetch(`/user/${userEmail}`)
+                        .then(response => response.text())
+                        .then(data => {
+                            userDetailsContainer.innerHTML = data;
+                        })
+                        .catch(error => {
+                            console.error('Error fetching user details:', error);
+                        });
+                });
+            });
+        });
+   </script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Form</title>
+    
+    <style>
+        body {
+            font-family: 'Times New Roman', serif;
+            background-color: #82cec2;
+            margin: 0;
+            padding: 0;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 4%;
+        }
+        h1 {
+            font-size: 24px; 
+            text-align: center;
+            color: black;  
+            margin-top: 10%;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* Responsive design */
+        @media (max-width: 600px) {
+            form {
+                max-width: 100%;
+                margin: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Fetch Data From API By Book Title Or Author Name</h1> 
+    <form method="post" action="/booksearch">  
+        <label for="keyword">Enter Keyword:</label>
+        <input type="text" id="keyword" name="keyword" required>
+        <button type="submit">Search</button>
+    </form>
+</body>
+</html>

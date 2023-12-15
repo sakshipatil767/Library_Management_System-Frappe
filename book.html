@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch Books</title>
+    <link rel="stylesheet" href="book.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </nav>
+    <center>
+        <div class="search-bar-container" id="search">
+            <form action="/search" method="GET">
+                <input type="text" id="searchInput" name="query" placeholder="Search by title, ISBN, or author">
+                <button type="submit" id="searchButton">Search</button>
+            </form>
+            <button type="submit" id="fetchbook">Fetch books</button>
+            <button type="submit" id="transaction">Transaction</button>
+        </div>
+    </center>
+    <h1>Book Data</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Bookid</th>
+                <th>Title</th>
+                <th>Authors</th>
+                <th>Average Rating</th>
+                <th>Isbn</th>
+                <th>Isbn13</th>
+                <th>Language code</th>
+                <th>Publication date</th>
+                <th>Publisher</th>
+                <th>Ratings Count</th>
+                <th>Text reviews count</th>
+                <th>stock</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in book_data %}
+                <tr>
+                    <td>{{ row['id'] }}</td>
+                    <td>{{ row['bookID'] }}</td>
+                    <td>{{ row['title'] }}</td>
+                    <td>{{ row['authors'] }}</td>
+                    <td>{{ row['average_rating'] }}</td>
+                    <td>{{ row['isbn'] }}</td>
+                    <td>{{ row['isbn13'] }}</td>
+                    <td>{{ row['language_code'] }}</td>
+                    <td>{{ row['publication_date'] }}</td>
+                    <td>{{ row['publisher'] }}</td>
+                    <td>{{ row['ratings_count'] }}</td>
+                    <td>{{ row['text_reviews_count'] }}</td>
+                    <td>{{ row['available_count'] }}</td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="issue-button" data-book-id="{{ row['bookID'] }}" data-book-title="{{ row['title'] }}" data-book-author="{{ row['authors'] }}">Issue</button>
+                            <a class="edit-button" href="/updatebook/{{ row['bookID'] }}">Update</a>
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    console.log('jQuery version:', $.fn.jquery);
+
+    $(document).ready(function () {
+        $(".issue-button").click(function () {
+            var bookId = $(this).data("book-id");
+            var bookTitle = $(this).data("book-title");
+            var bookAuthor = $(this).data("book-author");
+            sessionStorage.setItem("bookId", bookId);
+            sessionStorage.setItem("bookTitle", bookTitle);
+            sessionStorage.setItem("bookAuthor", bookAuthor);
+            var username = prompt("Please enter your username:");
+            var issueData = {
+                user_id: username,
+                bookID: bookId,
+                title: bookTitle,
+                authors: bookAuthor
+            };
+
+            $.ajax({
+                url: '/issue-books',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(issueData),
+                success: function (response) {
+                    console.log(response);
+                    alert(response.message);
+                    window.location.href = "/front";
+                },
+                error: function (error) {
+                    console.error(error);
+                    alert('Error issuing the book');
+                }
+            });
+        });
+        $("#fetchbook").click(function () {
+            window.location.href = "simple.html";
+        });
+        $("#transaction").click(function () {
+            window.location.href = "/transaction";
+        });
+    });
+</script>
+</body>
+</html>

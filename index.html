@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Fetch Books</title>
+   <link rel="stylesheet" href="book.css">
+</head>
+<body>
+   <nav>
+      <ul>
+         <li><a href="/">Home</a></li>
+         <li><a href="about.html">About</a></li>
+      </ul>
+   </nav>
+   <center>
+   <div class="search-bar-container" id="search">
+       <form action="/search" method="GET">
+           <input type="text" id="searchInput" name="query" placeholder="Search by title, ISBN, or author">
+           <button type="submit" id="searchButton">Search</button>
+       </form>
+       <button type="submit" id="addbooks" onclick="window.location.href='trbooks.html'">Add books</button>
+   </div>
+   </center>
+   <h1>Book Data</h1>
+   <table border="1">
+       <thead>
+           <tr>
+               <th>ID</th>
+               <th>Bookid</th>
+               <th>Title</th>
+               <th>Authors</th>
+               <th>Average Rating</th>
+               <th>Isbn</th>
+               <th>Isbn13</th>
+               <th>Language code</th>
+               <th>Publication date</th>
+               <th>Publisher</th>
+               <th>Ratings Count</th>
+               <th>Text reviews count</th>
+               <th>Action</th>
+           </tr>
+       </thead>
+       <tbody>
+           {% for row in book_data %}
+               <tr>
+                    <td>{{ row['id'] }}</td>
+                    <td>{{ row['bookID'] }}</td>
+                    <td>{{ row['title'] }}</td>
+                    <td>{{ row['authors'] }}</td>
+                    <td>{{ row['average_rating'] }}</td>
+                    <td>{{ row['isbn'] }}</td>
+                    <td>{{ row['isbn13'] }}</td>
+                    <td>{{ row['language_code'] }}</td>
+                    <td>{{ row['publication_date'] }}</td>
+                    <td>{{ row['publisher'] }}</td>
+                    <td>{{ row['ratings_count'] }}</td>
+                    <td>{{ row['text_reviews_count'] }}</td>
+                   <td>
+                       <div class="action-buttons">
+                        <button class="show-details-button" data-book-id="{{ row['bookID'] }}" onclick="addBook(this)">ADD</button>
+                       </div>
+                   </td>
+               </tr>
+           {% endfor %}
+       </tbody>
+   </table>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    function addBook(button) {
+    var row = $(button).closest('tr');
+    var bookData = {
+        'id': row.find('td:eq(0)').text(),
+        'bookID': row.find('td:eq(1)').text(),
+        'title': row.find('td:eq(2)').text(),
+        'authors': row.find('td:eq(3)').text(),
+        'average_rating': row.find('td:eq(4)').text(),
+        'isbn': row.find('td:eq(5)').text(),
+        'isbn13': row.find('td:eq(6)').text(),
+        'language_code': row.find('td:eq(7)').text(),
+        'publication_date': row.find('td:eq(8)').text(),
+        'publisher': row.find('td:eq(9)').text(),
+        'ratings_count': row.find('td:eq(10)').text(),
+        'text_reviews_count': row.find('td:eq(11)').text(),
+    };
+
+    $.ajax({
+        type: 'POST',
+        url: '/add_book',
+        data: bookData,
+        success: function(response) {
+            alert('Book added successfully!');
+        },
+        error: function(error) {
+            alert('Error adding book: ' + error.responseText);
+        }
+    });
+}
+</script>
+
+</body>
+</html>

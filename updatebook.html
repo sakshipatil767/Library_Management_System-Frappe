@@ -1,0 +1,118 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Update Book</title>
+   <style>
+       body {
+           font-family: 'Time new roman', sans-serif;
+           margin: 0;
+           padding: 0;
+       }
+
+       .background-container {
+           background: linear-gradient(rgb(136 181 175 / 60%), rgba(0, 255, 221, 0.4));
+           background-size: cover;
+           height: 100vh;
+           display: flex;
+           align-items: center;
+           justify-content: center;
+       }
+
+       .update-form-container {
+           max-width: 500px;
+           width: 100%;
+           padding: 20px;
+           background-color: rgba(255, 255, 255, 0.9);
+           border-radius: 8px;
+           box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+           text-align: center;
+           margin-top: 100px;
+       }
+
+       h1 {
+           color: #333;
+           margin-bottom: 20px;
+       }
+
+       label {
+           display: block;
+           margin-bottom: 8px;
+           color: #333;
+           text-align: left;
+       }
+
+       input {
+           width: 90%;
+           padding: 10px;
+           margin-bottom: 16px;
+           border: 1px solid #ddd;
+           border-radius: 4px;
+       }
+
+       .update-submit-button {
+           background-color: #b67fa1;
+           color: #fff;
+           border: none;
+           padding: 12px 20px;
+           cursor: pointer;
+           border-radius: 4px;
+           width: 50%;
+           margin: 0;
+           display: inline-block;
+           transition: background-color 0.3s ease;
+       }
+
+       .update-submit-button:hover {
+           background-color: #995b7d;
+       }
+   </style>
+</head>
+<body>
+   <div class="background-container">
+       <div class="update-form-container">
+           <h1>Update Book</h1>
+           <form method="post" action="/updatebook/{{ row['bookID'] }}" id="updateForm">
+               <input type="hidden" name="book_id" value="{{ row['bookID'] }}">
+               
+               <label for="title">Title:</label>
+               <input type="text" name="title" id="title" placeholder="Enter title" value="{{ row['title'] }}" required>
+
+               <label for="authors">Authors:</label>
+               <input type="text" name="authors" id="authors" placeholder="Enter authors" value="{{ row['authors'] }}" required>
+
+               <label for="average_rating">Average Rating:</label>
+               <input type="text" name="average_rating" id="average_rating" placeholder="Enter average rating" value="{{ row['average_rating'] }}" required>
+
+               <label for="isbn">ISBN:</label>
+               <input type="text" name="isbn" id="isbn" placeholder="Enter ISBN" value="{{ row['isbn'] }}" required>
+
+               <label for="isbn13">ISBN13:</label>
+               <input type="text" name="isbn13" id="isbn13" placeholder="Enter ISBN13" value="{{ row['isbn13'] }}" required>
+
+               <label for="language_code">Language Code:</label>
+               <input type="text" name="language_code" id="language_code" placeholder="Enter language code" value="{{ row['language_code'] }}" required>
+
+               <label for="publication_date">Publication Date:</label>
+               <input type="text" name="publication_date" id="publication_date" placeholder="Enter publication date" value="{{ row['publication_date'] }}" required>
+
+               <label for="publisher">Publisher:</label>
+               <input type="text" name="publisher" id="publisher" placeholder="Enter publisher" value="{{ row['publisher'] }}" required>
+
+               <label for="ratings_count">Ratings Count:</label>
+               <input type="text" name="ratings_count" id="ratings_count" placeholder="Enter ratings count" value="{{ row['ratings_count'] }}" required>
+
+               <label for="text_reviews_count">Text Reviews Count:</label>
+               <input type="text" name="text_reviews_count" id="text_reviews_count" placeholder="Enter text reviews count" value="{{ row['text_reviews_count'] }}" required>
+
+               <label for="available_count">Available Count:</label>
+               <input type="text" name="available_count" id="available_count" placeholder="Enter available count" value="{{ row['available_count'] }}" required>
+
+               <button type="submit" class="update-submit-button">Update</button>
+           </form>
+       </div>
+   </div>
+</body>
+</html>
