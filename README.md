@@ -12,15 +12,24 @@ __Library-Management-System-Frappe__
    Database - sqlite3
    
 ---
+
 **Getting Started** -
+
       Create a virtual environment -
-                [python -m venv venv](url)
+      
+                python -m venv venv
+                
       Activate the virtual environment -
-                [source venv/bin/activate](url)
+      
+                source venv/bin/activate
+                
       Activate the virtual environment -
-                [pip install Flask](url)
+      
+                pip install Flask
+                
       Install the requests library using pip -
-                [pip install requests](url)
+      
+                pip install requests
                 
 ---
 **Homepage**
