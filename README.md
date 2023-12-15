@@ -1,5 +1,5 @@
 
-**Library-Management-System-Frappe **
+__Library-Management-System-Frappe__
 
 ---
 **About-**
@@ -57,13 +57,16 @@
 ![f13](https://github.com/sakshipatil767/Library_Management_System-Frappe/assets/150012640/1836cbfa-fb23-4647-801b-ad62489cb786)
 ---
 **Update Books**
+
 ![f14](https://github.com/sakshipatil767/Library_Management_System-Frappe/assets/150012640/82939217-33e7-48e3-8a6d-c7eeb7cb1354)
 ---
 **Transaction Table**
+
 ![f15](https://github.com/sakshipatil767/Library_Management_System-Frappe/assets/150012640/755f9ce1-9417-4120-8842-f0a3a873c1f6)
 ---
 
 
+--- 
 
 **Conclusion** -
          This Library Management System project, conceived for the Developer Hiring Test, stands as a testament to the developer's proficiency in Python, CSS, HTML, and database management. Designed to optimize library operations, the system focuses on enabling librarians to effortlessly manage book inventory, member details, and transactions. With an emphasis on performing CRUD operations for books and members, issuing and returning books, and implementing a comprehensive search functionality. The developer's dedication to creating a user-friendly and efficient Base Library System.
