@@ -10,15 +10,18 @@ __Library-Management-System-Frappe__
    Front-End - HTML, CSS
    Back-End - Python
    Database - sqlite3
-
-Getting Started -
+   
+---
+**Getting Started** -
       Create a virtual environment -
-      
+                [python -m venv venv](url)
       Activate the virtual environment -
-      
+                [source venv/bin/activate](url)
       Activate the virtual environment -
-      
+                [pip install Flask](url)
       Install the requests library using pip -
+                [pip install requests](url)
+                
 ---
 **Homepage**
 
