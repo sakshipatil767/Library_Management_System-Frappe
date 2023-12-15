@@ -10,7 +10,15 @@ __Library-Management-System-Frappe__
    Front-End - HTML, CSS
    Back-End - Python
    Database - sqlite3
-   
+
+Getting Started -
+      Create a virtual environment -
+      
+      Activate the virtual environment -
+      
+      Activate the virtual environment -
+      
+      Install the requests library using pip -
 ---
 **Homepage**
 
